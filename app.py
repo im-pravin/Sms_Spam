@@ -9,6 +9,8 @@ import nltk
 
 nltk.download('punkt_tab')
 nltk.download('punkt')
+nltk.download('stopwords', quiet=True)
+STOP_WORDS = set(stopwords.words('english'))
 
 ps = PorterStemmer()
 
@@ -24,7 +26,7 @@ def transform_text(text):
     text = y[:]
     y.clear()
     for i in text:
-        if i not in stopwords.words('english') and i not in string.punctuation:
+        if i not in STOP_WORDS and i not in string.punctuation:
             y.append(i)
 
     text = y[:]
