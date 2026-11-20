@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pickle
 import string
@@ -30,8 +31,14 @@ def transform_text(text):
     return " ".join(y)
 
 
-tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
-model = pickle.load(open('model.pkl', 'rb'))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+tfidf = pickle.load(
+    open(os.path.join(BASE_DIR, 'vectorizer.pkl'), 'rb')
+)
+model = pickle.load(
+    open(os.path.join(BASE_DIR, 'model.pkl'), 'rb')
+)
 
 st.title("Spam Detection")
 input_sms = st.text_input("Enter the message")
